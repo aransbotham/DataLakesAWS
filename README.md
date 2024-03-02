@@ -33,14 +33,26 @@ As a data engineer on the STEDI Step Trainer team, you'll need to extract the da
 ## Data
 
 ### Landing Tables
-1. `stedi.customer_landing`
+The following data includes the raw data provided in S3 for customer and accelerometer data.
+1. `stedi.customer_landing` - 956 rows 
 
 <p align="center">
   <img src="images/customer_landing_data.png" alt="stedi.customer_landing" width=60% height=60%>
 </p>
 
-2. `stedi.customer_landing`
+2. `stedi.accelerometer_landing` - 81,273 rows
 
 <p align="center">
   <img src="images/accelerometer_landing_data.png" alt="stedi.accelerometer_landing" width=60% height=60%>
 </p>
+
+
+### Trusted Tables
+The following data has been sanitized to only include users that have opted in to share their data for Research purposes.
+1. `stedi.customer_trusted` - 482 rows
+
+<p align="center">
+  <img src="images/customer_trusted.png" alt="stedi.customer_trusted" width=60% height=60%>
+</p>
+
+2. `stedi.accelerometer_trusted` - 40,981 rows
