@@ -1,7 +1,11 @@
 # DataStreaming
 Repo for Project 3 in Udacity Data Engineering with AWS Nanodegree
 
-##Background
+<p align="center">
+  <img src="images/flowchart.jpeg" alt="STEDI Data Workflow" width=60% height=60%>
+</p>
+
+## Background
 
 ### STEDI Human Balance Analytics
 
