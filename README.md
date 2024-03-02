@@ -36,11 +36,11 @@ As a data engineer on the STEDI Step Trainer team, you'll need to extract the da
 1. `stedi.customer_landing`
 
 <p align="center">
-  <img src="images/customer_landing.png" alt="stedi.customer_landing" width=60% height=60%>
+  <img src="images/customer_landing_data.png" alt="stedi.customer_landing" width=60% height=60%>
 </p>
 
 2. `stedi.customer_landing`
 
 <p align="center">
-  <img src="images/accelerometer_landing.png" alt="stedi.accelerometer_landing" width=60% height=60%>
+  <img src="images/accelerometer_landing_data.png" alt="stedi.accelerometer_landing" width=60% height=60%>
 </p>
