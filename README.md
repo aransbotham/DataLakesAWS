@@ -1,11 +1,16 @@
 # DataStreaming
 Repo for Project 3 in Udacity Data Engineering with AWS Nanodegree
 
+## File Structure
+1. `sql`: Contains all DDL sql files.
+2. `script`: Contains all PySpark glue job files.
+3. `images`: Contains all screenshot images includes in this README.
+
+## Background
+
 <p align="center">
   <img src="images/flowchart.jpeg" alt="STEDI Data Workflow" width=60% height=60%>
 </p>
-
-## Background
 
 ### STEDI Human Balance Analytics
 
@@ -31,6 +36,22 @@ Some of the early adopters have agreed to share their data for research purposes
 As a data engineer on the STEDI Step Trainer team, you'll need to extract the data produced by the STEDI Step Trainer sensors and the mobile app, and curate them into a data lakehouse solution on AWS so that Data Scientists can train the learning model.
 
 ## Data
+
+### S3
+The following S3 buckets contain all data required to run this project.
+```
+customer/
+- landing/
+- trusted/
+- curated/
+accelerometer/
+- landing/
+- trusted/
+step_trainer/
+- landing/
+- trusted/
+- curated/
+```
 
 ### Landing Zone
 1. `stedi.customer_landing` - 956 rows - This has all of the original customer data.
