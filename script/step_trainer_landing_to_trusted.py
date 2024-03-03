@@ -22,45 +22,35 @@ job = Job(glueContext)
 job.init(args["JOB_NAME"], args)
 
 # Script generated for node Customer Trusted
-CustomerTrusted_node1709419631710 = glueContext.create_dynamic_frame.from_options(
-    format_options={"multiline": False},
-    connection_type="s3",
-    format="json",
-    connection_options={
-        "paths": ["s3://awsbucketanna/customer/trusted/"],
-        "recurse": True,
-    },
-    transformation_ctx="CustomerTrusted_node1709419631710",
+CustomerTrusted_node1709479155183 = glueContext.create_dynamic_frame.from_catalog(
+    database="stedi",
+    table_name="customer_trusted",
+    transformation_ctx="CustomerTrusted_node1709479155183",
 )
 
 # Script generated for node Step Trainer Landing
-StepTrainerLanding_node1709420458293 = glueContext.create_dynamic_frame.from_options(
-    format_options={"multiline": False},
-    connection_type="s3",
-    format="json",
-    connection_options={
-        "paths": ["s3://awsbucketanna/step_trainer/landing/"],
-        "recurse": True,
-    },
-    transformation_ctx="StepTrainerLanding_node1709420458293",
+StepTrainerLanding_node1709479205248 = glueContext.create_dynamic_frame.from_catalog(
+    database="stedi",
+    table_name="step_trainer_landing",
+    transformation_ctx="StepTrainerLanding_node1709479205248",
 )
 
-# Script generated for node Keep Columns Needed
+# Script generated for node Join
 SqlQuery0 = """
 select distinct
-st.*
-from st
+stl.*
+from stl
 inner join ct 
-ON st.serialNumber = st.serialNumber
+ON ct.serialNumber = stl.serialNumber
 """
-KeepColumnsNeeded_node1709422998378 = sparkSqlQuery(
+Join_node1709422998378 = sparkSqlQuery(
     glueContext,
     query=SqlQuery0,
     mapping={
-        "ct": CustomerTrusted_node1709419631710,
-        "st": StepTrainerLanding_node1709420458293,
+        "ct": CustomerTrusted_node1709479155183,
+        "stl": StepTrainerLanding_node1709479205248,
     },
-    transformation_ctx="KeepColumnsNeeded_node1709422998378",
+    transformation_ctx="Join_node1709422998378",
 )
 
 # Script generated for node Trusted Step Trainer
@@ -76,5 +66,5 @@ TrustedStepTrainer_node1709420602466.setCatalogInfo(
     catalogDatabase="stedi", catalogTableName="step_trainer_trusted"
 )
 TrustedStepTrainer_node1709420602466.setFormat("json")
-TrustedStepTrainer_node1709420602466.writeFrame(KeepColumnsNeeded_node1709422998378)
+TrustedStepTrainer_node1709420602466.writeFrame(Join_node1709422998378)
 job.commit()
