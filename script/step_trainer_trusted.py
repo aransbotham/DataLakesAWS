@@ -50,7 +50,7 @@ SqlQuery0 = """
 select distinct
 st.*
 from st
-join ct 
+inner join ct 
 ON st.serialNumber = st.serialNumber
 """
 KeepColumnsNeeded_node1709422998378 = sparkSqlQuery(

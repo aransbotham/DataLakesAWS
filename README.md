@@ -46,6 +46,8 @@ The following data includes the raw data provided in S3 for customer and acceler
   <img src="images/accelerometer_landing_data.png" alt="stedi.accelerometer_landing" width=60% height=60%>
 </p>
 
+3. `stedi.step_trainer_landing` - 28,680 rows
+
 
 ### Trusted Tables
 The following data has been sanitized to only include users that have opted in to share their data for Research purposes.
@@ -56,3 +58,10 @@ The following data has been sanitized to only include users that have opted in t
 </p>
 
 2. `stedi.accelerometer_trusted` - 40,981 rows
+
+3. `stedi.step_trainer_trusted` -  rows
+
+###  Curated Tables
+1. `stedi.customer_curated` - 482 rows
+
+3. `machine_learning_curated` -  rows
