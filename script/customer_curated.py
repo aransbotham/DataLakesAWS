@@ -73,7 +73,7 @@ CustomersCurated_node1709424731513 = glueContext.getSink(
     transformation_ctx="CustomersCurated_node1709424731513",
 )
 CustomersCurated_node1709424731513.setCatalogInfo(
-    catalogDatabase="stedi", catalogTableName="customer_curated"
+    catalogDatabase="stedi", catalogTableName="customers_curated"
 )
 CustomersCurated_node1709424731513.setFormat("glueparquet", compression="snappy")
 CustomersCurated_node1709424731513.writeFrame(

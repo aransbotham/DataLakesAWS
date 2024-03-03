@@ -60,6 +60,6 @@ As a data engineer on the STEDI Step Trainer team, you'll need to extract the da
 3. `stedi.step_trainer_trusted` -  14,460 rows - This table is limited to step trainer readings for customers that opted into research.
 
 ###  Curated Tables
-1. `stedi.customer_curated` - 482 rows - This table is limited to only customers that have opted in for research and have accelerometer readings available.
+1. `stedi.customers_curated` - 482 rows - This table is limited to only customers that have opted in for research and have accelerometer readings available.
 
 2. `machine_learning_curated` -  43,681 rows - This table has combined the accelerometer and step trainer readings for customers that have opted into research.
