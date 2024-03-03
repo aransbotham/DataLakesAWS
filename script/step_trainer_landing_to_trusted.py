@@ -21,11 +21,11 @@ spark = glueContext.spark_session
 job = Job(glueContext)
 job.init(args["JOB_NAME"], args)
 
-# Script generated for node Customer Trusted
-CustomerTrusted_node1709479155183 = glueContext.create_dynamic_frame.from_catalog(
+# Script generated for node Customer Curated
+CustomerCurated_node1709479155183 = glueContext.create_dynamic_frame.from_catalog(
     database="stedi",
-    table_name="customer_trusted",
-    transformation_ctx="CustomerTrusted_node1709479155183",
+    table_name="customers_curated",
+    transformation_ctx="CustomerCurated_node1709479155183",
 )
 
 # Script generated for node Step Trainer Landing
@@ -40,14 +40,14 @@ SqlQuery0 = """
 select distinct
 stl.*
 from stl
-inner join ct 
-ON ct.serialNumber = stl.serialNumber
+inner join cc
+ON cc.serialNumber = stl.serialNumber
 """
 Join_node1709422998378 = sparkSqlQuery(
     glueContext,
     query=SqlQuery0,
     mapping={
-        "ct": CustomerTrusted_node1709479155183,
+        "cc": CustomerCurated_node1709479155183,
         "stl": StepTrainerLanding_node1709479205248,
     },
     transformation_ctx="Join_node1709422998378",
