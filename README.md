@@ -32,11 +32,21 @@ As a data engineer on the STEDI Step Trainer team, you'll need to extract the da
 
 ## Data
 
-### Landing Tables
+### Landing Zone
 1. `stedi.customer_landing` - 956 rows - This has all of the original customer data.
 
 <p align="center">
   <img src="images/customer_landing_data.png" alt="stedi.customer_landing" width=60% height=60%>
+</p>
+
+<p align="center">
+  <img src="images/customer_landing_count.png" alt="stedi.customer_landing" width=60% height=60%>
+</p>
+
+We can see from the query below that there are customers that have not opted in for research:
+
+<p align="center">
+  <img src="images/customer_landing_research_count.png" alt="Opt-In vs. Opt-Out user counts" width=60% height=60%>
 </p>
 
 2. `stedi.accelerometer_landing` - 81,273 rows - This has all of the original accelerometer data.
@@ -45,19 +55,43 @@ As a data engineer on the STEDI Step Trainer team, you'll need to extract the da
   <img src="images/accelerometer_landing_data.png" alt="stedi.accelerometer_landing" width=60% height=60%>
 </p>
 
+<p align="center">
+  <img src="images/accelerometer_landing_count.png" alt="stedi.accelerometer_landing" width=60% height=60%>
+</p>
+
 3. `stedi.step_trainer_landing` - 28,680 rows - This has all of the original step trainer data.
 
 
-### Trusted Tables
+### Trusted Zone
 1. `stedi.customer_trusted` - 482 rows - This table is limited to only customers that have opted into research.
 
 <p align="center">
   <img src="images/customer_trusted.png" alt="stedi.customer_trusted" width=60% height=60%>
 </p>
 
+<p align="center">
+  <img src="images/customer_trusted_count.png" alt="stedi.customer_trusted" width=60% height=60%>
+</p>
+
+We can see from the query below that there are no longer customers that have not opted in for research:
+
+<p align="center">
+  <img src="images/customer_trusted_research_count.png" alt="Opt-In vs. Opt-Out user counts" width=60% height=60%>
+</p>
+
+
 2. `stedi.accelerometer_trusted` - 40,981 rows - This table is limited to accelerometer readings for customers that opted into research.
 
+<p align="center">
+  <img src="images/accelerometer_trusted_count.png" alt="stedi.accelerometer_trusted" width=60% height=60%>
+</p>
+
 3. `stedi.step_trainer_trusted` -  14,460 rows - This table is limited to step trainer readings for customers that opted into research.
+
+<p align="center">
+  <img src="images/step_trainer_trusted_count.png" alt="stedi.step_trainer_trusted" width=60% height=60%>
+</p>
+
 
 ###  Curated Tables
 
