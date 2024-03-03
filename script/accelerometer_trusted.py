@@ -21,16 +21,16 @@ spark = glueContext.spark_session
 job = Job(glueContext)
 job.init(args["JOB_NAME"], args)
 
-# Script generated for node Customer Landing
-CustomerLanding_node1709419631710 = glueContext.create_dynamic_frame.from_options(
+# Script generated for node Customer Trusted
+CustomerTrusted_node1709419631710 = glueContext.create_dynamic_frame.from_options(
     format_options={"multiline": False},
     connection_type="s3",
     format="json",
     connection_options={
-        "paths": ["s3://awsbucketanna/customer/landing/"],
+        "paths": ["s3://awsbucketanna/customer/trusted/"],
         "recurse": True,
     },
-    transformation_ctx="CustomerLanding_node1709419631710",
+    transformation_ctx="CustomerTrusted_node1709419631710",
 )
 
 # Script generated for node Accelerometer
@@ -45,36 +45,21 @@ Accelerometer_node1709420458293 = glueContext.create_dynamic_frame.from_options(
     transformation_ctx="Accelerometer_node1709420458293",
 )
 
-# Script generated for node SQL Query
-SqlQuery0 = """
-select distinct * from CustomerLanding
-where shareWithResearchAsOfDate IS NOT NULL
-"""
-SQLQuery_node1709421434424 = sparkSqlQuery(
-    glueContext,
-    query=SqlQuery0,
-    mapping={"CustomerLanding": CustomerLanding_node1709419631710},
-    transformation_ctx="SQLQuery_node1709421434424",
-)
-
-# Script generated for node Join to Opted In Users
-JointoOptedInUsers_node1709420554980 = Join.apply(
-    frame1=Accelerometer_node1709420458293,
-    frame2=SQLQuery_node1709421434424,
-    keys1=["user"],
-    keys2=["email"],
-    transformation_ctx="JointoOptedInUsers_node1709420554980",
-)
-
 # Script generated for node Keep Columns Needed
-SqlQuery1 = """
-select user, x, y, z
-from opted_in_join
+SqlQuery0 = """
+select 
+distinct 
+a.*
+from a
+join ct ON a.user = ct.email
 """
 KeepColumnsNeeded_node1709422998378 = sparkSqlQuery(
     glueContext,
-    query=SqlQuery1,
-    mapping={"opted_in_join": JointoOptedInUsers_node1709420554980},
+    query=SqlQuery0,
+    mapping={
+        "a": Accelerometer_node1709420458293,
+        "ct": CustomerTrusted_node1709419631710,
+    },
     transformation_ctx="KeepColumnsNeeded_node1709422998378",
 )
 

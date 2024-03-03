@@ -33,8 +33,8 @@ CustomerTrusted_node1709419631710 = glueContext.create_dynamic_frame.from_option
     transformation_ctx="CustomerTrusted_node1709419631710",
 )
 
-# Script generated for node Step Trainer
-StepTrainer_node1709420458293 = glueContext.create_dynamic_frame.from_options(
+# Script generated for node Step Trainer Landing
+StepTrainerLanding_node1709420458293 = glueContext.create_dynamic_frame.from_options(
     format_options={"multiline": False},
     connection_type="s3",
     format="json",
@@ -42,44 +42,39 @@ StepTrainer_node1709420458293 = glueContext.create_dynamic_frame.from_options(
         "paths": ["s3://awsbucketanna/step_trainer/landing/"],
         "recurse": True,
     },
-    transformation_ctx="StepTrainer_node1709420458293",
-)
-
-# Script generated for node Join to Opted In Users
-JointoOptedInUsers_node1709420554980 = Join.apply(
-    frame1=CustomerTrusted_node1709419631710,
-    frame2=StepTrainer_node1709420458293,
-    keys1=["serialnumber"],
-    keys2=["serialnumber"],
-    transformation_ctx="JointoOptedInUsers_node1709420554980",
+    transformation_ctx="StepTrainerLanding_node1709420458293",
 )
 
 # Script generated for node Keep Columns Needed
 SqlQuery0 = """
-select sensorReadingTime,
-serialNumber,
-distanceFromObject
-from opted_in_join
+select distinct
+st.*
+from st
+join ct 
+ON st.serialNumber = st.serialNumber
 """
 KeepColumnsNeeded_node1709422998378 = sparkSqlQuery(
     glueContext,
     query=SqlQuery0,
-    mapping={"opted_in_join": JointoOptedInUsers_node1709420554980},
+    mapping={
+        "ct": CustomerTrusted_node1709419631710,
+        "st": StepTrainerLanding_node1709420458293,
+    },
     transformation_ctx="KeepColumnsNeeded_node1709422998378",
 )
 
-# Script generated for node Trusted Accelerometer
-TrustedAccelerometer_node1709420602466 = glueContext.getSink(
-    path="s3://awsbucketanna/accelerometer/trusted/",
+# Script generated for node Trusted Step Trainer
+TrustedStepTrainer_node1709420602466 = glueContext.getSink(
+    path="s3://awsbucketanna/step_trainer/trusted/",
     connection_type="s3",
     updateBehavior="UPDATE_IN_DATABASE",
     partitionKeys=[],
     enableUpdateCatalog=True,
-    transformation_ctx="TrustedAccelerometer_node1709420602466",
+    transformation_ctx="TrustedStepTrainer_node1709420602466",
 )
-TrustedAccelerometer_node1709420602466.setCatalogInfo(
-    catalogDatabase="stedi", catalogTableName="accelerometer_trusted"
+TrustedStepTrainer_node1709420602466.setCatalogInfo(
+    catalogDatabase="stedi", catalogTableName="step_trainer_trusted"
 )
-TrustedAccelerometer_node1709420602466.setFormat("json")
-TrustedAccelerometer_node1709420602466.writeFrame(KeepColumnsNeeded_node1709422998378)
+TrustedStepTrainer_node1709420602466.setFormat("json")
+TrustedStepTrainer_node1709420602466.writeFrame(KeepColumnsNeeded_node1709422998378)
 job.commit()
