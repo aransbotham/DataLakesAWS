@@ -41,7 +41,7 @@ select distinct
 stl.*
 from stl
 inner join cc
-ON cc.corrected_serialNumber = stl.serialNumber
+ON cc.serialNumber = stl.serialNumber
 """
 Join_node1709422998378 = sparkSqlQuery(
     glueContext,
