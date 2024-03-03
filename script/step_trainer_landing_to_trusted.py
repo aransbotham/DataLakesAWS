@@ -38,10 +38,10 @@ StepTrainerLanding_node1709479205248 = glueContext.create_dynamic_frame.from_cat
 # Script generated for node Join
 SqlQuery0 = """
 select distinct
-st.*
+stl.*
 from stl
 inner join ct 
-ON st.serialNumber = st.serialNumber
+ON ct.serialNumber = stl.serialNumber
 """
 Join_node1709422998378 = sparkSqlQuery(
     glueContext,
