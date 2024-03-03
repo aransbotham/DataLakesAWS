@@ -93,7 +93,7 @@ We can see from the query below that there are no longer customers that have not
 </p>
 
 
-###  Curated Tables
+###  Curated Zone
 
 <p align="center">
   <img src="images/ERD.png" alt="Entity Relationship Diagram" width=60% height=60%>
@@ -102,4 +102,12 @@ We can see from the query below that there are no longer customers that have not
 
 1. `stedi.customers_curated` - 482 rows - This table is limited to only customers that have opted in for research and have accelerometer readings available.
 
+<p align="center">
+  <img src="images/customers_curated_count.png" alt="Customers Curated Count" width=60% height=60%>
+</p>
+
 2. `machine_learning_curated` -  43,681 rows - This table has combined the accelerometer and step trainer readings for customers that have opted into research.
+
+<p align="center">
+  <img src="images/machine_learning_curated_count.png" alt="Machine Learning Curated Count" width=60% height=60%>
+</p>
